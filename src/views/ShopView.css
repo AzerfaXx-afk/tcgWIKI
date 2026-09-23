@@ -1,0 +1,549 @@
+.shop-view-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: relative;
+  min-height: 100%;
+}
+
+.shop-header {
+  margin-bottom: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.shop-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.shop-title {
+  font-family: var(--brand-sans);
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.3px;
+}
+
+.shop-rates-btn {
+  padding: 5px 9px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 9.5px;
+  font-weight: 800;
+  color: var(--accent-blue);
+  cursor: pointer;
+  letter-spacing: 0.3px;
+}
+
+.shop-subline {
+  font-size: 9px;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* 3-Boosters Grid */
+.shop-boosters-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.shop-pack-card {
+  padding: 10px 7px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: space-between;
+  border-radius: 18px;
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.shop-pack-card:hover {
+  transform: translateY(-3px);
+}
+
+/* Visuel Paquet Métallisé Réel Foiled */
+.pack-visual-box {
+  width: 100%;
+  aspect-ratio: 1 / 1.15;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 8px;
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.12),
+    inset 0 1px 1px rgba(255, 255, 255, 0.6);
+}
+
+.shop-pack-crimp-top,
+.shop-pack-crimp-bottom {
+  width: 100%;
+  height: 8px;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.18) 0px,
+    rgba(0, 0, 0, 0.18) 2px,
+    rgba(255, 255, 255, 0.3) 2px,
+    rgba(255, 255, 255, 0.3) 4px
+  );
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25);
+  position: relative;
+  z-index: 3;
+}
+
+.shop-foil-crest {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(4px);
+  padding: 5px 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  z-index: 2;
+}
+
+[data-theme="dark"] .shop-foil-crest {
+  background: rgba(15, 23, 42, 0.7);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.shop-foil-mini-brand {
+  font-size: 7.5px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+}
+
+.shop-foil-mini-edition {
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  color: var(--text-primary);
+}
+
+.gold-text {
+  color: #b45309;
+}
+
+.gold-shimmer-brand {
+  color: #854d0e;
+}
+
+.gold-shimmer-sub {
+  color: #78350f;
+  font-weight: 900;
+}
+
+.pack-silver {
+  background: linear-gradient(135deg, #f1f5f9 0%, #cbd5e1 50%, #94a3b8 100%);
+}
+
+.pack-sapphire {
+  background: linear-gradient(135deg, #eff6ff 0%, #93c5fd 40%, #3b82f6 70%, #1e40af 100%);
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  box-shadow: 0 0 14px rgba(37, 99, 235, 0.25);
+}
+
+.blue-text {
+  color: #1d4ed8;
+  font-weight: 900;
+}
+
+.highlight-blue {
+  color: #2563eb;
+  font-weight: 800;
+}
+
+.pack-heritage {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 50%, #d97706 100%);
+  border: 1px solid rgba(217, 119, 6, 0.3);
+}
+
+.pack-gold-shimmer {
+  background: linear-gradient(135deg, #fffbeb 0%, #fde047 40%, #eab308 70%, #854d0e 100%);
+  border: 1px solid #f59e0b;
+  box-shadow: 0 0 14px rgba(245, 158, 11, 0.35);
+}
+
+.pack-foil-simulation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.foil-mini-card {
+  width: 14px;
+  height: 22px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transform: rotate(-8deg);
+}
+
+.foil-mini-card.center {
+  width: 17px;
+  height: 26px;
+  transform: rotate(0deg);
+  z-index: 2;
+  background: #ffffff;
+}
+
+.foil-mini-card:last-child {
+  transform: rotate(8deg);
+}
+
+.pack-info-block {
+  margin-bottom: 8px;
+  width: 100%;
+}
+
+.pack-title {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+  line-height: 1.15;
+}
+
+.pack-count-label {
+  display: block;
+  font-size: 8.5px;
+  font-weight: 800;
+  color: var(--text-secondary);
+}
+
+.pack-count-label.highlight-gold {
+  color: #b45309;
+  font-size: 8px;
+}
+
+.pack-sublabel {
+  display: block;
+  font-size: 8px;
+  color: var(--text-muted);
+}
+
+.pack-buy-btn {
+  width: 100%;
+  padding: 6px 6px;
+  font-size: 9.5px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn-gold {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fde68a;
+}
+
+/* Carte Coffret Display (24 Boosters) */
+.shop-display-box-card {
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  border-radius: 20px;
+  background: var(--bg-card);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  box-shadow: 
+    var(--shadow-raised),
+    0 0 16px rgba(245, 158, 11, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.shop-display-box-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    var(--shadow-raised-hover),
+    0 0 22px rgba(245, 158, 11, 0.25);
+}
+
+.box-card-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.box-card-icon-frame {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #18181b 0%, #27272a 100%);
+  border: 1.5px solid rgba(245, 158, 11, 0.6);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  gap: 2px;
+}
+
+.box-icon-svg {
+  color: #fbbf24;
+}
+
+.box-tag-label {
+  font-size: 5px;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: 0.3px;
+  background: rgba(217, 119, 6, 0.7);
+  padding: 1px 3px;
+  border-radius: 3px;
+}
+
+.box-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.box-card-header-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.box-pre-tag {
+  font-size: 6.5px;
+  font-weight: 800;
+  color: #d97706;
+  letter-spacing: 0.5px;
+}
+
+.box-guarantee-pill {
+  font-size: 6px;
+  font-weight: 800;
+  background: rgba(37, 99, 235, 0.1);
+  color: #2563eb;
+  padding: 1px 4px;
+  border-radius: 4px;
+}
+
+.box-card-title {
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.box-card-desc {
+  font-size: 7px;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.25;
+}
+
+.box-buy-action-btn {
+  padding: 8px 12px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(145deg, #f59e0b, #d97706);
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 4px 12px rgba(217, 119, 6, 0.35);
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.box-buy-action-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(217, 119, 6, 0.5);
+}
+
+.box-price-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1;
+}
+
+.box-price-tokens {
+  font-size: 9.5px;
+  font-weight: 900;
+  letter-spacing: 0.2px;
+}
+
+.box-badge-discount {
+  font-size: 6px;
+  font-weight: 900;
+  color: #fef08a;
+  margin-top: 2px;
+}
+
+/* Secondary Row */
+.shop-secondary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.shop-deal-card {
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  border-radius: 18px;
+}
+
+.deal-visual-box {
+  width: 100%;
+  height: 52px;
+  border-radius: 12px;
+  background: var(--bg-main);
+  box-shadow: var(--shadow-inset);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 6px;
+}
+
+.coins-svg {
+  color: #64748b;
+}
+
+.flame-svg {
+  color: #ea580c;
+}
+
+.deal-title {
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.deal-title.text-red {
+  color: #c2410c;
+}
+
+.deal-sub {
+  font-size: 8.5px;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.deal-buy-btn {
+  width: 100%;
+  margin-top: 8px;
+  padding: 6px 10px;
+  font-size: 10px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flash-timer-badge {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  background: rgba(255, 255, 255, 0.92);
+  padding: 2px 6px;
+  border-radius: 9999px;
+  font-size: 8px;
+  font-weight: 700;
+  color: #475569;
+  box-shadow: var(--shadow-raised-sm);
+}
+
+.flash-red {
+  color: #dc2626;
+  font-size: 11px;
+}
+
+/* Preview Section */
+.shop-preview-section {
+  margin-top: 6px;
+  padding-bottom: 80px;
+}
+
+.preview-heading {
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.shop-cards-preview-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+/* Floating Balance Pill inside phone frame */
+.shop-floating-balance-pill {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(237, 242, 247, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 18px;
+  box-shadow: 4px 4px 14px rgba(174, 189, 206, 0.5), -4px -4px 14px rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  z-index: 40;
+  pointer-events: none;
+}
+
+.balance-pill-label {
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+}
+
+.balance-pill-amount strong {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.balance-pill-unit {
+  font-size: 8px;
+  color: var(--text-muted);
+  font-weight: 600;
+}

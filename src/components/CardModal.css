@@ -1,0 +1,669 @@
+/* Modal 3D d'Inspection Awwwards - wikiCollect */
+.card-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  animation: modalFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.card-modal-container {
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Actions en haut de la modal */
+.modal-header-actions {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.modal-nav-arrows-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.modal-nav-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.modal-nav-btn:hover:not(:disabled) {
+  transform: translateY(-1px) scale(1.05);
+  color: #3b82f6;
+}
+
+.modal-nav-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.modal-flip-btn {
+  padding: 7px 12px;
+  font-size: 10px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  letter-spacing: 0.4px;
+}
+
+.spin-reverse {
+  transform: rotate(180deg);
+  transition: transform 0.4s ease;
+}
+
+.modal-close-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Scène 3D */
+.card-3d-stage {
+  width: 100%;
+  aspect-ratio: 1 / 1.54;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: grab;
+}
+
+.card-3d-stage.is-flipped {
+  transform: perspective(1100px) rotateY(180deg) !important;
+}
+
+/* Structure commune des faces */
+.card-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  background: var(--bg-card);
+  box-shadow: 
+    0 24px 50px -10px rgba(0, 0, 0, 0.35), 
+    -8px -8px 24px rgba(255, 255, 255, 0.95);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 8px;
+}
+
+/* Glare Holographique dynamique */
+.card-glare-effect {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--glare-x, 50%) var(--glare-y, 50%),
+    rgba(255, 255, 255, 0.65) 0%,
+    rgba(255, 215, 0, 0.25) 30%,
+    rgba(255, 255, 255, 0) 65%
+  );
+  pointer-events: none;
+  z-index: 15;
+  mix-blend-mode: overlay;
+  opacity: 0.85;
+}
+
+/* =========================================================
+   FACE 1 : RECTO
+   ========================================================= */
+.modal-card-frame-bezel {
+  width: 100%;
+  height: 100%;
+  border-radius: 18px;
+  background: var(--bg-main);
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  position: relative;
+}
+
+/* Finitions Raretés RECTO */
+.rarity-theme-c {
+  background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+  border: 2px solid #cbd5e1;
+}
+
+.rarity-theme-r {
+  background: linear-gradient(135deg, #93c5fd 0%, #3b82f6 50%, #1e40af 100%);
+  border: 2px solid #3b82f6;
+  box-shadow: 0 0 25px rgba(59, 130, 246, 0.35);
+}
+
+.rarity-theme-h {
+  background: linear-gradient(135deg, #fde68a 0%, #d97706 50%, #92400e 100%);
+  border: 2px solid #d97706;
+  box-shadow: 0 0 25px rgba(217, 119, 6, 0.4);
+}
+
+.rarity-theme-d {
+  background: linear-gradient(135deg, #38bdf8, #a855f7, #ec4899, #f59e0b);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 30px rgba(168, 85, 247, 0.45);
+}
+
+.rarity-theme-l {
+  background: linear-gradient(135deg, #fffbeb 0%, #fef08a 30%, #eab308 65%, #78350f 100%);
+  border: 2px solid #f59e0b;
+  box-shadow: 0 0 35px rgba(245, 158, 11, 0.55);
+}
+
+.rarity-theme-u {
+  background: linear-gradient(135deg, #0f172a 0%, #581c87 50%, #db2777 100%);
+  border: 2px solid #ec4899;
+  box-shadow: 0 0 40px rgba(236, 72, 153, 0.6);
+}
+
+/* En-tête du Recto */
+.card-front-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.card-aura-badge {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-raised-sm);
+  padding: 3px 7px;
+  border-radius: 8px;
+}
+
+.aura-gem-icon {
+  font-size: 11px;
+}
+
+.aura-val {
+  font-size: 11.5px;
+  font-weight: 800;
+  color: #6366f1;
+}
+
+.aura-label {
+  font-size: 7px;
+  font-weight: 800;
+  color: var(--text-muted);
+}
+
+.rarity-label-pill {
+  padding: 3px 10px;
+  border-radius: 9999px;
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-raised-sm);
+}
+
+.card-serial-tag {
+  font-size: 9px;
+  font-weight: 800;
+  color: var(--text-muted);
+  font-family: monospace;
+}
+
+/* Artwork Pop-out 2.5D */
+.modal-card-artwork-box {
+  width: 100%;
+  aspect-ratio: 4 / 3.2;
+  border-radius: 14px;
+  overflow: hidden;
+  position: relative;
+  background: #cbd5e1;
+  box-shadow: var(--shadow-inset);
+  margin-bottom: 8px;
+}
+
+.modal-artwork-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 12%;
+  display: block;
+}
+
+.modal-artwork-empty {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.artwork-vignette-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, transparent 60%, rgba(0, 0, 0, 0.28) 100%);
+  pointer-events: none;
+}
+
+.artwork-category-pill {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(6px);
+  color: #ffffff;
+  font-size: 8px;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+/* Titre & Extrait */
+.card-front-title-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.modal-card-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 3px;
+  line-height: 1.15;
+}
+
+.modal-card-brief {
+  font-size: 9.5px;
+  color: var(--text-secondary);
+  line-height: 1.35;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* Panneau des 4 Stats Officielles */
+.card-official-stats-panel {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+  padding: 6px;
+  border-radius: 12px;
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-inset);
+  margin-top: 6px;
+}
+
+.official-stat-pill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+}
+
+.official-stat-pill .stat-svg {
+  margin-bottom: 1px;
+}
+
+.stat-atq .stat-svg { color: #dc2626; }
+.stat-def .stat-svg { color: #2563eb; }
+.stat-pv .stat-svg  { color: #059669; }
+.stat-vit .stat-svg { color: #d97706; }
+
+.stat-code {
+  font-size: 7.5px;
+  font-weight: 800;
+  color: var(--text-muted);
+}
+
+.stat-number {
+  font-size: 11.5px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+/* Footer strip */
+.card-front-footer-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 7px;
+  padding-top: 4px;
+  border-top: 1px dashed rgba(166, 180, 200, 0.4);
+  font-size: 7.5px;
+  font-weight: 800;
+  color: var(--text-muted);
+  letter-spacing: 0.4px;
+}
+
+/* =========================================================
+   FACE 2 : VERSO (Le Dos Relique & Archives)
+   ========================================================= */
+.card-face-back {
+  transform: rotateY(180deg);
+  background: #f8fafc;
+  padding: 8px;
+}
+
+[data-theme="dark"] .card-face-back {
+  background: #0f172a;
+}
+
+.back-card-bezel {
+  width: 100%;
+  height: 100%;
+  border-radius: 18px;
+  background: var(--bg-main);
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  position: relative;
+}
+
+/* Tabs sélecteur de mode verso */
+.back-mode-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.back-tab-btn {
+  flex: 1;
+  padding: 5px 8px;
+  font-size: 8.5px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+/* VUE 1 : DOS RELIQUE */
+.back-relic-face {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.guilloche-border-outer {
+  flex: 1;
+  border: 2px solid #b45309;
+  border-radius: 14px;
+  padding: 4px;
+  background: linear-gradient(145deg, #fef3c7 0%, #fffbeb 50%, #fef3c7 100%);
+  position: relative;
+  box-shadow: inset 0 0 14px rgba(180, 83, 9, 0.15);
+}
+
+[data-theme="dark"] .guilloche-border-outer {
+  background: linear-gradient(145deg, #1e1b4b 0%, #0f172a 50%, #1e1b4b 100%);
+  border-color: #d97706;
+}
+
+.guilloche-border-inner {
+  width: 100%;
+  height: 100%;
+  border: 1px dashed rgba(180, 83, 9, 0.5);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  position: relative;
+}
+
+.heraldic-corner {
+  position: absolute;
+  font-size: 14px;
+  color: #b45309;
+}
+
+.heraldic-corner.top-left { top: 4px; left: 4px; }
+.heraldic-corner.top-right { top: 4px; right: 4px; }
+.heraldic-corner.bottom-left { bottom: 4px; left: 4px; }
+.heraldic-corner.bottom-right { bottom: 4px; right: 4px; }
+
+.relic-header-motto {
+  font-family: var(--brand-serif);
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #92400e;
+}
+
+[data-theme="dark"] .relic-header-motto {
+  color: #fbbf24;
+}
+
+/* Grand Sceau central */
+.relic-central-seal {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #f59e0b 0%, #b45309 80%, #78350f 100%);
+  box-shadow: 
+    0 8px 24px rgba(180, 83, 9, 0.4),
+    inset 0 2px 6px rgba(255, 255, 255, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+}
+
+.seal-ring-outer {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.seal-ring-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #ffffff;
+  text-align: center;
+}
+
+.seal-compass {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.seal-brand-text {
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  margin-top: 1px;
+}
+
+.seal-w { opacity: 0.9; }
+.seal-c { font-weight: 800; letter-spacing: 1px; }
+
+.relic-footer-motto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2px;
+}
+
+.motto-latin {
+  font-family: var(--brand-serif);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #92400e;
+}
+
+[data-theme="dark"] .motto-latin {
+  color: #fbbf24;
+}
+
+.motto-sub {
+  font-size: 7.5px;
+  color: var(--text-secondary);
+}
+
+.relic-serial-stamp {
+  font-family: monospace;
+  font-size: 8.5px;
+  font-weight: 800;
+  color: #92400e;
+  opacity: 0.8;
+}
+
+/* VUE 2 : ARCHIVES DU SAVOIR & CONFORMITÉ LÉGALE */
+.back-archive-face {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.archive-scroll-content {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-right: 2px;
+}
+
+.archive-title-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.archive-icon {
+  color: #3b82f6;
+}
+
+.archive-title-row h3 {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.archive-extract-box {
+  background: var(--bg-surface);
+  border-radius: 10px;
+  padding: 8px 10px;
+  box-shadow: var(--shadow-inset);
+  font-size: 9.5px;
+  line-height: 1.4;
+  color: var(--text-secondary);
+}
+
+.archive-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5px;
+}
+
+.metric-item {
+  background: var(--bg-surface);
+  border-radius: 8px;
+  padding: 5px 8px;
+  box-shadow: var(--shadow-raised-sm);
+  display: flex;
+  flex-direction: column;
+}
+
+.metric-label {
+  font-size: 7.5px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.metric-val {
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+/* Conformité Légale & Creative Commons */
+.legal-compliance-card {
+  background: rgba(59, 130, 246, 0.08);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  border-radius: 9px;
+  padding: 6px 8px;
+  font-size: 8px;
+}
+
+.compliance-header {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 800;
+  color: #2563eb;
+  letter-spacing: 0.3px;
+  margin-bottom: 2px;
+}
+
+.compliance-icon {
+  color: #2563eb;
+}
+
+.compliance-text {
+  color: var(--text-secondary);
+  line-height: 1.3;
+}
+
+.compliance-text strong {
+  color: var(--text-primary);
+}
+
+.wiki-direct-link {
+  padding: 8px;
+  font-size: 9px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: auto;
+}

@@ -1,0 +1,216 @@
+.profile-view-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.profile-header {
+  margin-bottom: 2px;
+}
+
+.profile-title {
+  font-family: var(--brand-sans);
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.3px;
+}
+
+/* User summary */
+.profile-user-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 6px 0 10px 0;
+}
+
+.profile-avatar-outer-ring {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: var(--bg-main);
+  box-shadow: var(--shadow-raised);
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.profile-avatar-inner-ring {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: var(--shadow-inset);
+  background: #cbd5e1;
+}
+
+.profile-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-user-name {
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.profile-user-level {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--text-secondary);
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+}
+
+.profile-user-date {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* Stats Card */
+.profile-stats-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.profile-card-heading {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  color: var(--text-primary);
+  text-transform: uppercase;
+}
+
+.profile-stats-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 12px;
+  align-items: center;
+}
+
+.stat-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+}
+
+.stat-label {
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--text-muted);
+  letter-spacing: 0.3px;
+  line-height: 1.2;
+}
+
+.stat-progress-track {
+  width: 100%;
+  height: 7px;
+  border-radius: 4px;
+  background: var(--bg-main);
+  box-shadow: var(--shadow-inset);
+  overflow: hidden;
+  padding: 1px;
+}
+
+.stat-progress-fill {
+  height: 100%;
+  background: #64748b;
+  border-radius: 3px;
+}
+
+.stat-value {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.stat-big-number {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+/* Balance Row */
+.profile-balance-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+}
+
+.balance-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.balance-label {
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--text-muted);
+  letter-spacing: 0.4px;
+}
+
+.balance-value {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.balance-value strong {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.recharge-btn {
+  padding: 10px 18px;
+  font-size: 11px;
+  border-radius: 14px;
+}
+
+/* History Card */
+.profile-history-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.profile-history-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  line-height: 1.35;
+}
+
+/* Action buttons */
+.profile-actions-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.profile-action-pill {
+  flex: 1;
+  padding: 12px 10px;
+  font-size: 10px;
+  border-radius: 14px;
+  text-align: center;
+}
+
+.btn-logout {
+  color: #991b1b;
+}

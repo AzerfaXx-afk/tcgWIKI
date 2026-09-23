@@ -1,0 +1,614 @@
+:root {
+  /* LIGHT MODE (Neumorphism Porcelaine / Ivoire) */
+  --bg-main: #edf2f7;
+  --bg-surface: #edf2f7;
+  --bg-card: #edf2f7;
+  --text-primary: #19212d;
+  --text-secondary: #5d6f85;
+  --text-muted: #8899ac;
+  --brand-serif: 'Cinzel', serif;
+  --brand-sans: 'Plus Jakarta Sans', sans-serif;
+  
+  /* Neumorphic Shadows Light */
+  --shadow-raised: 5px 5px 12px rgba(166, 180, 200, 0.4), -5px -5px 12px rgba(255, 255, 255, 0.95);
+  --shadow-raised-hover: 7px 7px 16px rgba(166, 180, 200, 0.5), -7px -7px 16px rgba(255, 255, 255, 1);
+  --shadow-raised-sm: 3px 3px 8px rgba(166, 180, 200, 0.35), -3px -3px 8px rgba(255, 255, 255, 0.95);
+  --shadow-raised-lg: 8px 8px 20px rgba(166, 180, 200, 0.45), -8px -8px 20px rgba(255, 255, 255, 0.95);
+  --shadow-inset: inset 2.5px 2.5px 5px rgba(166, 180, 200, 0.4), inset -2.5px -2.5px 5px rgba(255, 255, 255, 0.95);
+  --shadow-dock: 0 4px 16px rgba(166, 180, 200, 0.25), 0 1px 3px rgba(255, 255, 255, 0.8);
+  --phone-border: #ffffff;
+  --phone-outer-rim: #cbd5e1;
+  --frame-bg: transparent;
+  --btn-gradient: linear-gradient(145deg, #f5f9fd, #e4eaf2);
+
+  /* Card Rarity Badge Colors */
+  --rarity-c: #78889b;
+  --rarity-r: #2563eb;
+  --rarity-s: #475569;
+  --rarity-g: #d97706;
+  --rarity-d: #0284c7;
+  --rarity-h: #b45309;
+  --rarity-l: #7c3aed;
+  --rarity-u: #db2777;
+}
+
+/* DARK MODE (Noir Profond & Obsidian Awwwards) */
+[data-theme="dark"] {
+  --bg-main: #0c1017;
+  --bg-surface: #131922;
+  --bg-card: #131922;
+  --text-primary: #f0f6fc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+
+  /* Neumorphic Shadows Dark */
+  --shadow-raised: 5px 5px 14px rgba(0, 0, 0, 0.65), -4px -4px 12px rgba(255, 255, 255, 0.035);
+  --shadow-raised-hover: 7px 7px 18px rgba(0, 0, 0, 0.8), -5px -5px 14px rgba(255, 255, 255, 0.05);
+  --shadow-raised-sm: 3px 3px 8px rgba(0, 0, 0, 0.55), -3px -3px 8px rgba(255, 255, 255, 0.03);
+  --shadow-raised-lg: 8px 8px 24px rgba(0, 0, 0, 0.75), -6px -6px 18px rgba(255, 255, 255, 0.04);
+  --shadow-inset: inset 2.5px 2.5px 5px rgba(0, 0, 0, 0.75), inset -2.5px -2.5px 5px rgba(255, 255, 255, 0.035);
+  --shadow-dock: 0 6px 20px rgba(0, 0, 0, 0.65), 0 0 1px rgba(255, 255, 255, 0.1);
+  --phone-border: #1a2332;
+  --phone-outer-rim: #0f141d;
+  --frame-bg: transparent;
+  --btn-gradient: linear-gradient(145deg, #161e2a, #10151f);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: var(--brand-sans);
+  background: var(--bg-main);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+/* App Viewport Container */
+.app-viewport-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 12px;
+  background: transparent;
+  position: relative;
+  z-index: 10;
+  transition: background 0.35s ease;
+}
+
+/* Fixed Authentic Smartphone Frame */
+.phone-frame {
+  width: 412px;
+  max-width: 100%;
+  height: 840px;
+  max-height: 96vh;
+  background: var(--bg-main);
+  border-radius: 40px;
+  box-shadow: 
+    0 25px 60px -15px rgba(100, 116, 139, 0.35),
+    0 0 0 8px var(--phone-border),
+    0 0 0 10px var(--phone-outer-rim);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.35s ease, box-shadow 0.35s ease;
+  z-index: 10;
+}
+
+[data-theme="dark"] .phone-frame {
+  box-shadow: 
+    0 25px 70px -15px rgba(0, 0, 0, 0.8),
+    0 0 0 8px var(--phone-border),
+    0 0 0 10px var(--phone-outer-rim);
+}
+
+/* Native Mobile Display */
+@media (max-width: 440px) {
+  .app-viewport-wrapper {
+    padding: 0;
+    background: var(--bg-main);
+  }
+  .phone-frame {
+    width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+  }
+}
+
+/* App Header */
+.app-header {
+  padding: 18px 18px 8px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg-main);
+  flex-shrink: 0;
+  z-index: 10;
+  transition: background-color 0.35s ease;
+}
+
+.header-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  border: none;
+  background: var(--btn-gradient);
+  box-shadow: var(--shadow-raised-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.header-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-raised);
+}
+
+.header-btn:active {
+  box-shadow: var(--shadow-inset);
+  transform: scale(0.96);
+}
+
+/* Logo wikiCollect */
+.app-title-logo {
+  font-family: var(--brand-serif);
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  color: var(--text-primary);
+  text-align: center;
+  line-height: 1;
+  user-select: none;
+  display: flex;
+  align-items: baseline;
+  gap: 1px;
+}
+
+.app-title-logo .logo-wiki-part {
+  font-family: var(--brand-serif);
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: #3b82f6;
+}
+
+[data-theme="dark"] .app-title-logo .logo-wiki-part {
+  color: #60a5fa;
+}
+
+.app-title-logo .logo-collect-part {
+  font-family: var(--brand-sans);
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: var(--text-primary);
+}
+
+.avatar-badge {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--btn-gradient);
+  box-shadow: var(--shadow-raised-sm);
+  padding: 2.5px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.avatar-badge:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-raised);
+}
+
+.avatar-badge:active {
+  box-shadow: var(--shadow-inset);
+  transform: scale(0.96);
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #cbd5e1;
+}
+
+/* App Screen Content Area */
+.app-screen-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 6px 14px 78px 14px;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+  position: relative;
+}
+
+.app-screen-content::-webkit-scrollbar {
+  display: none;
+}
+
+/* No-scroll mode for HomeView and CollectionView */
+.app-screen-content.no-scroll {
+  overflow-y: hidden;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-screen-content.no-scroll > * {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+/* Mode classeur Awwwards : padding optimisé pour affichage 100% visible des 16 cartes */
+.app-screen-content.collection-active {
+  padding: 3px 6px 74px 6px;
+  overflow: hidden;
+}
+
+/* Subtle page transition */
+.app-screen-content > * {
+  animation: screenEnter 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes screenEnter {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Bottom Floating Neumorphic Dock (5 Tabs) */
+.floating-dock-container {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  height: 62px;
+  background: var(--bg-surface);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 24px;
+  box-shadow: var(--shadow-dock);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 4px;
+  z-index: 100;
+  transition: background-color 0.35s ease;
+}
+
+.dock-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  width: 52px;
+  border-radius: 16px;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  gap: 2px;
+}
+
+.dock-item:hover {
+  color: var(--text-primary);
+}
+
+.dock-item.active {
+  background: var(--bg-main);
+  box-shadow: var(--shadow-inset);
+  color: var(--text-primary);
+  font-weight: 700;
+  transform: scale(0.96);
+}
+
+.dock-item:active {
+  transform: scale(0.93);
+}
+
+.dock-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Neumorphic Common Cards */
+.neu-card {
+  background: var(--bg-card);
+  border-radius: 18px;
+  box-shadow: var(--shadow-raised);
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.neu-card:hover {
+  box-shadow: var(--shadow-raised-hover);
+}
+
+.neu-button {
+  background: var(--btn-gradient);
+  border: none;
+  border-radius: 14px;
+  box-shadow: var(--shadow-raised-sm);
+  padding: 8px 14px;
+  color: var(--text-primary);
+  font-weight: 700;
+  font-size: 11.5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.neu-button:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-raised);
+}
+
+.neu-button:active {
+  box-shadow: var(--shadow-inset);
+  transform: translateY(1px) scale(0.97);
+}
+
+.neu-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-main);
+  border-radius: 18px;
+  box-shadow: var(--shadow-inset);
+  padding: 10px 14px;
+  margin-bottom: 10px;
+}
+
+.neu-search-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: var(--brand-sans);
+  font-size: 11.5px;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.neu-search-input::placeholder {
+  color: var(--text-muted);
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Horizontal pill scroll bar */
+.pills-scroll-row {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 2px 2px 8px 2px;
+  margin-bottom: 8px;
+  scrollbar-width: none;
+}
+
+.pills-scroll-row::-webkit-scrollbar {
+  display: none;
+}
+
+.neu-pill {
+  padding: 6px 12px;
+  border-radius: 9999px;
+  background: var(--btn-gradient);
+  border: none;
+  box-shadow: var(--shadow-raised-sm);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.neu-pill:hover {
+  transform: translateY(-1px);
+}
+
+.neu-pill.active {
+  box-shadow: var(--shadow-inset);
+  color: var(--text-primary);
+  background: var(--bg-main);
+  transform: scale(0.96);
+}
+
+/* Pro Menu Drawer */
+.menu-drawer-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1500;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.menu-drawer-content {
+  width: 290px;
+  height: 100%;
+  background: var(--bg-surface);
+  box-shadow: 12px 0 35px rgba(0, 0, 0, 0.35);
+  padding: 28px 18px 20px 18px;
+  display: flex;
+  flex-direction: column;
+  animation: slideInLeft 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+.drawer-brand-header {
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(160, 175, 195, 0.15);
+}
+
+.drawer-title {
+  font-family: var(--brand-serif);
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text-primary);
+  display: flex;
+  align-items: baseline;
+  gap: 1px;
+}
+
+.drawer-title .logo-wiki-part {
+  color: #3b82f6;
+  font-family: var(--brand-serif);
+}
+
+[data-theme="dark"] .drawer-title .logo-wiki-part {
+  color: #60a5fa;
+}
+
+.drawer-title .logo-collect-part {
+  font-family: var(--brand-sans);
+  font-size: 19px;
+  color: var(--text-primary);
+}
+
+.drawer-desc {
+  font-size: 10.5px;
+  color: var(--text-secondary);
+  line-height: 1.35;
+  margin-top: 4px;
+}
+
+/* Drawer User Mini-Card */
+.drawer-user-card {
+  background: var(--bg-main);
+  border-radius: 16px;
+  box-shadow: var(--shadow-inset);
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.drawer-user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.drawer-user-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.drawer-user-name {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.drawer-user-level {
+  font-size: 9.5px;
+  font-weight: 700;
+  color: #3b82f6;
+}
+
+.drawer-user-tokens {
+  font-size: 10px;
+  font-weight: 800;
+  color: #d97706;
+}
+
+.drawer-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.drawer-item {
+  width: 100%;
+  justify-content: flex-start;
+  padding: 10px 14px;
+  gap: 10px;
+  border-radius: 14px;
+  font-size: 11.5px;
+}
+
+.drawer-theme-toggle-box {
+  background: var(--bg-main);
+  border-radius: 18px;
+  box-shadow: var(--shadow-inset);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.drawer-toggle-label {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.drawer-footer {
+  font-size: 9px;
+  color: var(--text-muted);
+  text-align: center;
+  padding-top: 10px;
+  margin-top: 10px;
+}

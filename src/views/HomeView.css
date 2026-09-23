@@ -1,0 +1,491 @@
+/* HomeView Awwwards Dashboard - wikiCollect */
+.home-view-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  max-height: 100%;
+  gap: 6px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* 1. Salutation Joueur & Rang */
+.home-greeting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0px;
+  flex-shrink: 0;
+}
+
+.greeting-text-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.greeting-pretitle {
+  font-size: 6.5px;
+  font-weight: 800;
+  color: #3b82f6;
+  letter-spacing: 0.5px;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.home-greeting-title {
+  font-family: var(--brand-sans);
+  font-size: 14.5px;
+  font-weight: 900;
+  letter-spacing: -0.3px;
+  color: var(--text-primary);
+  line-height: 1;
+  margin: 0;
+}
+
+.home-user-rank-pill {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--bg-main);
+  box-shadow: var(--shadow-raised-sm);
+  padding: 3px 7px;
+  border-radius: 20px;
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  color: var(--text-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+[data-theme="dark"] .home-user-rank-pill {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.rank-crown-icon {
+  color: #f59e0b;
+}
+
+/* 2. Dashboard Grid (Collection + 3 Boosters) */
+.home-dashboard-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.home-collection-panel,
+.home-booster-panel {
+  padding: 7px 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 16px;
+  box-sizing: border-box;
+}
+
+.panel-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+  flex-shrink: 0;
+}
+
+.panel-title-with-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.panel-title {
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  margin: 0;
+  line-height: 1;
+}
+
+.panel-count-pill {
+  font-size: 6px;
+  font-weight: 800;
+  color: #2563eb;
+  background: rgba(37, 99, 235, 0.1);
+  padding: 1px 4px;
+  border-radius: 4px;
+}
+
+.panel-more-btn {
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  background: var(--bg-main);
+  box-shadow: var(--shadow-raised-sm);
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.panel-more-btn:active {
+  box-shadow: var(--shadow-inset);
+  transform: scale(0.95);
+}
+
+/* Grille de 6 Mini Cartes de Collection */
+.home-mini-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+}
+
+.mini-card-slot-wrap {
+  width: 100%;
+  aspect-ratio: 1 / 1.38;
+}
+
+/* Liste des 3 Boosters & Cooldowns Réels */
+.booster-header-tag {
+  font-size: 6.5px;
+  font-weight: 800;
+  color: #3b82f6;
+  letter-spacing: 0.5px;
+}
+
+.booster-buttons-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+.home-booster-item-btn {
+  width: 100%;
+  padding: 8px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 12px;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-sizing: border-box;
+}
+
+[data-theme="dark"] .home-booster-item-btn {
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+.home-booster-item-btn:hover {
+  transform: translateY(-1px) scale(1.01);
+}
+
+.home-booster-item-btn:active {
+  box-shadow: var(--shadow-inset);
+  transform: scale(0.97);
+}
+
+/* Pulsation quand le booster est PRÊT */
+.home-booster-item-btn.is-ready {
+  border-color: rgba(34, 197, 94, 0.5);
+  box-shadow: 0 0 10px rgba(34, 197, 94, 0.25), var(--shadow-raised-sm);
+  animation: readyPulse 2s infinite ease-in-out;
+}
+
+@keyframes readyPulse {
+  0%, 100% { box-shadow: 0 0 8px rgba(34, 197, 94, 0.2), var(--shadow-raised-sm); }
+  50% { box-shadow: 0 0 14px rgba(34, 197, 94, 0.5), var(--shadow-raised-hover); }
+}
+
+.booster-item-left {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+}
+
+.booster-mini-badge {
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+  background: var(--bg-main);
+  box-shadow: var(--shadow-raised-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.icon-common .booster-pack-svg { color: #64748b; }
+.icon-rare .booster-pack-svg { color: #2563eb; }
+.icon-epic .booster-pack-svg { color: #d97706; }
+
+.booster-item-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.booster-name {
+  font-size: 8.5px;
+  font-weight: 800;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.15;
+}
+
+.booster-desc-sub {
+  font-size: 6.5px;
+  font-weight: 700;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.booster-timer-badge {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.timer-ready-tag {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #fff;
+  font-size: 7px;
+  font-weight: 900;
+  padding: 2.5px 7px;
+  border-radius: 5px;
+  letter-spacing: 0.4px;
+  box-shadow: 0 1px 4px rgba(34, 197, 94, 0.35);
+}
+
+.timer-ready-tag.tag-rare {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+
+.timer-ready-tag.tag-epic {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.timer-countdown-tag {
+  font-family: monospace;
+  font-size: 8px;
+  font-weight: 800;
+  color: var(--text-muted);
+  background: rgba(0, 0, 0, 0.04);
+  padding: 2px 6px;
+  border-radius: 5px;
+}
+
+[data-theme="dark"] .timer-countdown-tag {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* 3. Vos Meilleurs Cards Panel (Podium TOP 3) */
+.home-top-cards-panel {
+  display: flex;
+  flex-direction: column;
+  padding: 7px 9px;
+  border-radius: 16px;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.top-header-spaced {
+  margin-bottom: 5px;
+}
+
+.top-cards-title-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.trophy-gold-icon {
+  color: #f59e0b;
+}
+
+.top-cards-sub {
+  font-size: 7px;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.home-top-cards-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+.top-card-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.top-rank-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  font-size: 7.5px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.rank-1 {
+  background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+  color: #1a1003;
+  border: 1px solid #fef3c7;
+}
+
+.rank-2 {
+  background: linear-gradient(135deg, #f1f5f9 0%, #94a3b8 100%);
+  color: #0f172a;
+  border: 1px solid #ffffff;
+}
+
+.rank-3 {
+  background: linear-gradient(135deg, #fed7aa 0%, #c2410c 100%);
+  color: #431407;
+  border: 1px solid #ffedd5;
+}
+
+/* 4. Section Basse : Actu & Jauge Carnet */
+.home-bottom-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.home-market-panel,
+.home-gauge-panel {
+  padding: 6px 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 14px;
+  box-sizing: border-box;
+}
+
+.market-header-row {
+  display: flex;
+  align-items: center;
+  gap: 3.5px;
+  margin-bottom: 3px;
+}
+
+.market-flame-icon {
+  color: #ef4444;
+}
+
+.market-ticker-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5px;
+}
+
+.ticker-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ticker-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dot-red { background: #ef4444; }
+.dot-blue { background: #3b82f6; }
+
+.ticker-text {
+  font-size: 6.5px;
+  color: var(--text-secondary);
+  line-height: 1.15;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+}
+
+.ticker-card-highlight {
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+/* Jauge Circulaire */
+.circular-gauge-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 48px;
+  margin-top: 1px;
+}
+
+.gauge-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.gauge-center-content {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+}
+
+.gauge-sublabel {
+  font-size: 5.5px;
+  font-weight: 800;
+  color: var(--text-muted);
+  letter-spacing: 0.3px;
+}
+
+.gauge-numbers {
+  font-size: 8.5px;
+  font-weight: 900;
+  color: var(--text-primary);
+  margin-top: 1px;
+}
+
+.gauge-numbers strong {
+  color: #3b82f6;
+}
+
+.collection-value-footer {
+  text-align: center;
+  font-size: 6px;
+  font-weight: 800;
+  color: var(--text-muted);
+  letter-spacing: 0.2px;
+  margin-top: 2px;
+}
+
+.collection-value-footer strong {
+  color: #d97706;
+}

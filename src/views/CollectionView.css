@@ -1,0 +1,728 @@
+/* =========================================================
+   CLASSEUR DE COLLECTION OFFICIEL - WIKICOLLECT (STYLE AWWWARDS)
+   Planches de 16 Cartes Uniformes (4x4) & Navigation Fluide
+   ========================================================= */
+
+.collection-binder-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  gap: 5px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* =========================================================
+   1. EN-TÊTE DU CLASSEUR (MINIMALISTE & HAUTE COUTURE)
+   ========================================================= */
+.binder-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-shrink: 0;
+  height: 28px;
+  padding: 0 2px;
+}
+
+.binder-header-left {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.binder-title-block {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.binder-title-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.binder-title {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.binder-edition-pill {
+  font-size: 6.5px;
+  font-weight: 800;
+  padding: 1.5px 5.5px;
+  border-radius: 4px;
+  background: rgba(37, 99, 235, 0.09);
+  color: #2563eb;
+  letter-spacing: 0.6px;
+  border: 1px solid rgba(37, 99, 235, 0.22);
+  line-height: 1.2;
+}
+
+[data-theme="dark"] .binder-edition-pill {
+  background: rgba(96, 165, 250, 0.16);
+  color: #93c5fd;
+  border-color: rgba(96, 165, 250, 0.3);
+}
+
+.binder-sub {
+  font-size: 7.5px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 1px;
+}
+
+.binder-header-right {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+.drop-rates-trigger-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  height: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+[data-theme="dark"] .drop-rates-trigger-btn {
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.drop-rates-trigger-btn:hover {
+  transform: translateY(-1px);
+  color: #2563eb;
+  border-color: rgba(37, 99, 235, 0.3);
+}
+
+.scale-svg {
+  color: #3b82f6;
+}
+
+/* =========================================================
+   2. BARRE DE RECHERCHE PERMANENTE HAUTE DÉFINITION
+   ========================================================= */
+.binder-search-bar-wrapper {
+  flex-shrink: 0;
+  padding: 0 1px;
+}
+
+.binder-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-inset);
+  border-radius: 8px;
+  padding: 3px 8px;
+  height: 27px;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  transition: all 0.2s ease;
+}
+
+[data-theme="dark"] .binder-search-bar {
+  border-color: rgba(255, 255, 255, 0.04);
+}
+
+.binder-search-bar:focus-within {
+  border-color: rgba(37, 99, 235, 0.5);
+  box-shadow: var(--shadow-inset), 0 0 0 1px rgba(37, 99, 235, 0.2);
+}
+
+.search-bar-icon {
+  color: #3b82f6;
+  flex-shrink: 0;
+}
+
+.binder-search-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 8.5px;
+  font-weight: 600;
+  color: var(--text-primary);
+  outline: none;
+  letter-spacing: 0.2px;
+  min-width: 0;
+}
+
+.binder-search-input::placeholder {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.search-active-controls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.search-count-badge {
+  font-size: 6.5px;
+  font-weight: 900;
+  padding: 1px 4.5px;
+  border-radius: 4px;
+  background: rgba(59, 130, 246, 0.12);
+  color: #2563eb;
+  letter-spacing: 0.2px;
+}
+
+[data-theme="dark"] .search-count-badge {
+  background: rgba(59, 130, 246, 0.25);
+  color: #93c5fd;
+}
+
+.clear-search-btn {
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: color 0.15s ease;
+}
+
+.clear-search-btn:hover {
+  color: var(--text-primary);
+}
+
+/* =========================================================
+   2.5 SÉLECTEUR HORIZONTAL DE CATÉGORIES AWWWARDS
+   ========================================================= */
+.binder-categories-scroll-wrapper {
+  flex-shrink: 0;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 1px 0;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.binder-categories-scroll-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.binder-categories-strip {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: max-content;
+  padding: 1px 2px;
+}
+
+.category-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4.5px;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: var(--bg-surface);
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.04), -1px -1px 3px rgba(255, 255, 255, 0.7);
+  color: var(--text-secondary);
+  font-family: inherit;
+  font-size: 7.5px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+  transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+[data-theme="dark"] .category-pill-btn {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(30, 41, 59, 0.7);
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4), -1px -1px 3px rgba(255, 255, 255, 0.03);
+  color: #94a3b8;
+}
+
+.category-pill-btn:hover {
+  transform: translateY(-0.5px);
+  color: var(--text-primary);
+  border-color: rgba(37, 99, 235, 0.3);
+}
+
+.category-pill-btn.active {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  color: #ffffff;
+  border-color: #3b82f6;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.35);
+  font-weight: 900;
+}
+
+[data-theme="dark"] .category-pill-btn.active {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  color: #ffffff;
+  border-color: #60a5fa;
+  box-shadow: 0 2px 10px rgba(59, 130, 246, 0.5);
+}
+
+.category-pill-label {
+  line-height: 1;
+}
+
+.category-pill-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5px 4.5px;
+  border-radius: 9999px;
+  background: rgba(0, 0, 0, 0.06);
+  color: var(--text-muted);
+  font-size: 6.5px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.category-pill-btn.active .category-pill-count {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+/* État Vide Recherche */
+.binder-empty-search {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 240px;
+  text-align: center;
+  gap: 6px;
+  padding: 20px 10px;
+  box-sizing: border-box;
+}
+
+.empty-search-icon {
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+.empty-search-title {
+  font-size: 9.5px;
+  font-weight: 900;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.empty-search-sub {
+  font-size: 7.5px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin: 0;
+  max-width: 220px;
+}
+
+.reset-search-btn {
+  margin-top: 4px;
+  padding: 4px 10px;
+  font-size: 7.5px;
+  font-weight: 900;
+  color: #3b82f6;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* =========================================================
+   3. PLANCHE DU CLASSEUR (GRILLE 4x4 STRICTEMENT UNIFORME)
+   ========================================================= */
+.binder-page-leather-board {
+  background: var(--bg-surface);
+  border-radius: 12px;
+  box-shadow: var(--shadow-inset);
+  padding: 4px 4px 4px 6px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  flex: 1;
+  min-height: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+[data-theme="dark"] .binder-page-leather-board {
+  border-color: rgba(255, 255, 255, 0.04);
+}
+
+/* 4 Anneaux métalliques discrets sur la reliure gauche */
+.binder-rings-strip {
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 1.5px;
+  width: 2.5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  pointer-events: none;
+}
+
+.binder-ring {
+  width: 2.5px;
+  height: 7px;
+  border-radius: 1px;
+  background: #cbd5e1;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+[data-theme="dark"] .binder-ring {
+  background: #334155;
+}
+
+/* Grille 4 colonnes x 4 rangées = 16 cartes de taille 100% identique */
+.binder-slots-grid.binder-16-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: repeat(4, minmax(0, 1fr));
+  gap: 4px;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  box-sizing: border-box;
+}
+
+/* Animations 3D de Tourne-Pages Style Album Luxueux */
+.binder-slots-grid.page-turn-next {
+  animation: binderPageTurnNext 0.28s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.binder-slots-grid.page-turn-prev {
+  animation: binderPageTurnPrev 0.28s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes binderPageTurnNext {
+  0% {
+    opacity: 0.2;
+    transform: perspective(1000px) rotateY(-8deg) translateX(14px) scale(0.975);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1000px) rotateY(0deg) translateX(0) scale(1);
+  }
+}
+
+@keyframes binderPageTurnPrev {
+  0% {
+    opacity: 0.2;
+    transform: perspective(1000px) rotateY(8deg) translateX(-14px) scale(0.975);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1000px) rotateY(0deg) translateX(0) scale(1);
+  }
+}
+
+.binder-slot-wrapper {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   4. BARRE DE NAVIGATION & FLÈCHES TACTILES (AWWWARDS DOCK)
+   ========================================================= */
+.binder-pagination-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+  margin-top: 2px;
+  padding: 0 1px;
+  height: 32px;
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.binder-pagination-arrows-group {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+.page-nav-arrow-btn {
+  height: 28px;
+  border-radius: 8px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-primary);
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  background: var(--bg-main);
+  box-shadow: var(--shadow-raised-sm);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  flex-shrink: 0;
+}
+
+[data-theme="dark"] .page-nav-arrow-btn {
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+.page-nav-arrow-btn.page-nav-main-arrow {
+  width: 32px;
+  color: #2563eb;
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-raised-sm);
+}
+
+[data-theme="dark"] .page-nav-arrow-btn.page-nav-main-arrow {
+  color: #60a5fa;
+}
+
+.page-nav-arrow-btn.page-nav-jump-arrow {
+  width: 24px;
+  color: var(--text-muted);
+}
+
+.page-nav-arrow-btn:hover:not(:disabled) {
+  transform: translateY(-1px) scale(1.06);
+  color: #2563eb;
+  border-color: rgba(37, 99, 235, 0.35);
+  box-shadow: var(--shadow-raised), 0 0 8px rgba(37, 99, 235, 0.15);
+}
+
+.page-nav-arrow-btn:active:not(:disabled) {
+  transform: scale(0.95);
+  box-shadow: var(--shadow-inset);
+}
+
+.page-nav-arrow-btn:disabled {
+  opacity: 0.32;
+  cursor: not-allowed;
+  color: var(--text-muted);
+  transform: none !important;
+  box-shadow: none !important;
+  background: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] .page-nav-arrow-btn:disabled {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(255, 255, 255, 0.03);
+}
+
+.page-indicator-pill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: var(--bg-main);
+  box-shadow: var(--shadow-inset);
+  padding: 2px 8px;
+  border-radius: 8px;
+  color: var(--text-primary);
+  flex: 1;
+  min-width: 0;
+  height: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  transition: all 0.2s ease;
+}
+
+[data-theme="dark"] .page-indicator-pill {
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.page-indicator-pill.interactive-turn-pill {
+  cursor: pointer;
+}
+
+.page-indicator-pill.interactive-turn-pill:hover {
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-raised-sm);
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+.page-nav-main-text {
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.page-num-highlight {
+  color: #2563eb;
+  font-weight: 900;
+}
+
+[data-theme="dark"] .page-num-highlight {
+  color: #60a5fa;
+}
+
+.page-nav-sep {
+  opacity: 0.4;
+  margin: 0 1px;
+}
+
+.page-completion-tag {
+  background: rgba(59, 130, 246, 0.1);
+  color: #2563eb;
+  padding: 1.5px 5px;
+  border-radius: 4px;
+  font-size: 6.5px;
+  font-weight: 800;
+  font-family: monospace;
+  white-space: nowrap;
+}
+
+[data-theme="dark"] .page-completion-tag {
+  background: rgba(59, 130, 246, 0.2);
+  color: #93c5fd;
+}
+
+/* =========================================================
+   5. POPOVER : INDEX DES PLANCHES DU CLASSEUR
+   ========================================================= */
+.page-jump-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 100;
+  display: flex;
+  align-items: flex-end;
+  animation: fadeIn 0.2s ease;
+}
+
+.page-jump-card {
+  width: 100%;
+  max-height: 65%;
+  background: var(--bg-main);
+  border-radius: 16px 16px 0 0;
+  box-shadow: var(--shadow-raised-lg);
+  padding: 10px 12px 14px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  animation: slideUpModal 0.24s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border-top: 1px solid rgba(255, 255, 255, 0.6);
+  box-sizing: border-box;
+}
+
+[data-theme="dark"] .page-jump-card {
+  border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+.page-jump-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="dark"] .page-jump-header {
+  border-bottom-color: rgba(255, 255, 255, 0.06);
+}
+
+.page-jump-title {
+  font-size: 8.5px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  color: var(--text-primary);
+}
+
+.page-jump-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+  overflow-y: auto;
+  max-height: 220px;
+  padding: 2px 0;
+}
+
+.page-jump-item-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 2px;
+  border-radius: 6px;
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-raised-sm);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+[data-theme="dark"] .page-jump-item-btn {
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.page-jump-item-btn:hover {
+  transform: translateY(-1px);
+  color: #3b82f6;
+  border-color: #3b82f6;
+}
+
+.page-jump-item-btn.active {
+  background: #3b82f6;
+  border-color: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
+}
+
+.jump-page-num {
+  font-family: monospace;
+  font-size: 8px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.page-jump-item-btn.active .jump-page-num {
+  color: #ffffff;
+}
+
+.jump-page-range {
+  font-family: monospace;
+  font-size: 6px;
+  font-weight: 700;
+  opacity: 0.75;
+  margin-top: 1.5px;
+  line-height: 1;
+}
+
+.page-jump-item-btn.active .jump-page-range {
+  opacity: 0.95;
+  color: #eff6ff;
+}
