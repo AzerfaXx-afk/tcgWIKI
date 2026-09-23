@@ -1,5 +1,5 @@
 export const MOCK_USER = {
-  name: "Nathan C.",
+  name: "AzerfaXx",
   level: 99,
   title: "Administrateur & Grand Archiviste",
   memberSince: "Oct 2023",
@@ -9,7 +9,7 @@ export const MOCK_USER = {
   collectionValue: 850000,
   legendaryCount: 65,
   achievementRate: 100,
-  avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=400&q=80"
+  avatar: "https://avatars.githubusercontent.com/u/176696846?v=4"
 };
 
 export const MOCK_CARDS = [
