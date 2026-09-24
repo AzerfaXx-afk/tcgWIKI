@@ -15,6 +15,7 @@ import { MOCK_USER } from './data/mockData';
 import { MASTER_CATALOG, generateSeriesCatalog } from './data/cardsCatalog';
 import { SERIES_CONFIG, getSeriesMetadata } from './data/seriesData';
 import { BOOSTER_CONFIGS } from './services/boosterService';
+import { fetchAllCardsFromSupabase } from './services/supabaseClient';
 import HomeView from './views/HomeView';
 import CollectionView from './views/CollectionView';
 import ShopView from './views/ShopView';
@@ -40,14 +41,30 @@ export default function App() {
   const [openingPack, setOpeningPack] = useState(null);
   const [openingBox, setOpeningBox] = useState(null);
   const [showRecharge, setShowRecharge] = useState(false);
+  const [supabaseCards, setSupabaseCards] = useState(null);
 
-  // Cartes actives de la série sélectionnée (chargement dynamique garanti à jour)
+  // Chargement en arrière-plan des milliers de cartes réelles Supabase
+  useEffect(() => {
+    let isMounted = true;
+    fetchAllCardsFromSupabase(15000).then(data => {
+      if (isMounted && data && data.length > 0) {
+        console.log(`[tcgWIKI] ${data.length} cartes réelles chargées depuis Supabase !`);
+        setSupabaseCards(data);
+      }
+    });
+    return () => { isMounted = false; };
+  }, []);
+
+  // Cartes actives du classeur : Chargement prioritaire Supabase (milliers de cartes) ou Master Catalog
   const activeCards = React.useMemo(() => {
+    if (supabaseCards && supabaseCards.length > 0) {
+      return supabaseCards;
+    }
     if (seriesCardsMap[activeSeriesId]) {
       return seriesCardsMap[activeSeriesId];
     }
     return activeSeriesId === 1 ? MASTER_CATALOG : generateSeriesCatalog(activeSeriesId);
-  }, [activeSeriesId, seriesCardsMap]);
+  }, [activeSeriesId, seriesCardsMap, supabaseCards]);
 
   // Synchronisation stricte : Éliminer tout cache obsolète éventuel dans le navigateur
   useEffect(() => {

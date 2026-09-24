@@ -244,7 +244,7 @@ export default function CollectionView({
               <span className="binder-edition-pill">PRESTIGE</span>
             </div>
             <span className="binder-sub">
-              Panthéon mondial • Classé par rareté
+              {cards.length.toLocaleString('fr-FR')} cartes certifiées • {totalPages} planches • Classé par rareté
             </span>
           </div>
         </div>
